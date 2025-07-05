@@ -115,6 +115,67 @@
 
 ---
 
+## **INCIDENT REPORT: Terminal Command Execution Issues**
+
+### **What Happened**
+- **Date**: [Current]
+- **Agent**: BMad Master  
+- **Issue**: Terminal commands frequently getting stuck, interrupted, or failing
+- **Problem**: PowerShell command parsing errors and execution timeouts
+- **Root Cause**: Mixing Unix commands with PowerShell environment and using overly complex commands
+
+### **Symptoms Identified**
+1. **Command Interruption**: Commands getting cut off mid-execution
+2. **Parsing Errors**: Random characters (e.g., `q`) appearing in output
+3. **Command Not Found**: Unix commands (`pwd`, `wc`, `curl`) failing in PowerShell
+4. **Tool Timeouts**: Long-running commands causing tool failures
+5. **Shell State Corruption**: Terminal sessions becoming unresponsive
+
+### **Resolution Applied**
+1. **PowerShell-Native Commands**: Replaced Unix commands with PowerShell equivalents
+2. **Simplified Command Structure**: Used single-line, focused commands
+3. **Shorter Command Strings**: Avoided complex multi-line operations
+4. **Proper Error Handling**: Implemented fallback strategies for command failures
+
+### **PowerShell Command Reference**
+| Unix Command | PowerShell Command | Purpose |
+|--------------|-------------------|---------|
+| `pwd` | `Get-Location` | Current directory |
+| `ls` | `Get-ChildItem` | List files |
+| `wc -l file` | `(Get-Content file).Count` | Count lines |
+| `curl` | `Invoke-WebRequest` | HTTP requests |
+| `grep` | `Select-String` | Pattern matching |
+| `rm -rf` | `Remove-Item -Recurse -Force` | Delete files/folders |
+
+### **Terminal Best Practices**
+#### **✅ DO:**
+- Use PowerShell-native commands
+- Keep commands simple and single-line
+- Use short, descriptive commit messages
+- Test commands with simple operations first
+- Use file operations when terminal fails
+
+#### **❌ AVOID:**
+- Unix commands in PowerShell environment
+- Complex multi-line commands with here-strings
+- Very long command strings (>200 characters)
+- Chained operations with `&&` or `||`
+- Background processes without proper handling
+
+### **Lessons Learned**
+1. **Environment Awareness**: Always use environment-appropriate commands
+2. **Simplicity First**: Simple commands are more reliable than complex ones
+3. **Fallback Strategies**: Have alternative approaches when terminal fails
+4. **Progressive Testing**: Test simple commands before complex operations
+
+### **Process Improvements Applied**
+1. ✅ Added PowerShell command reference to development protocol
+2. ✅ Established terminal best practices guidelines
+3. ✅ Created fallback strategies for command execution failures
+4. ✅ Implemented progressive command testing approach
+
+---
+
 ## **AGENT HANDOFF CHECKLIST**
 
 ### **When Starting Work on This Project**
@@ -141,18 +202,24 @@
 ## **QUICK REFERENCE**
 
 ### **Emergency Context Check Commands**
-```bash
+```powershell
 # Check current development server status
 npm run dev
 
-# Check story completion status
-ls docs/stories/
+# Check story completion status (PowerShell)
+Get-ChildItem docs/stories/
 
-# Check latest development logs
-# Review "Dev Agent Record" section in story files
+# Check if .env files exist (PowerShell)
+Get-ChildItem -Name .env*
 
-# Verify environment status
-# Check if .env files exist and are properly configured
+# Check current directory (PowerShell)
+Get-Location
+
+# Check git status (works in PowerShell)
+git status --porcelain
+
+# Test file existence (PowerShell)
+Test-Path filename.ext
 ```
 
 ### **Critical Files to Review**
@@ -165,10 +232,13 @@ ls docs/stories/
 ---
 
 ## **PROTOCOL VERSION**
-- **Version**: 1.0
+- **Version**: 1.1
 - **Created**: [Current Date]
+- **Last Updated**: [Current Date]
 - **Created By**: BMad Master
+- **Updated By**: BMad Master
 - **Reason**: Response to CSS compilation error incident
+- **Update Reason**: Added terminal command execution issue resolution
 - **Next Review**: After next major development incident
 
 ---
