@@ -1,0 +1,91 @@
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  /* 245 Events Design System Variables */
+  
+  /* Colors */
+  --color-primary-accent: #E85E2C;
+  --color-primary-accent-hover: #D05528;
+  --color-text-light: #FFFFFF;
+  --color-text-dark: #2D2D2D;
+  
+  /* Typography */
+  --font-family-primary: 'Inter', sans-serif;
+  
+  /* Spacing */
+  --border-radius-standard: 8px;
+  
+  /* Landing Page Specific */
+  --landing-bg-gradient: linear-gradient(45deg, rgba(232, 94, 44, 0.6) 0%, rgba(45, 45, 45, 0.7) 100%);
+  --landing-card-bg: rgba(0, 0, 0, 0.2);
+  --landing-card-border: 1px solid rgba(255, 255, 255, 0.2);
+  --landing-card-backdrop: blur(10px);
+  
+  /* Admin Dashboard Specific */
+  --admin-bg-color: #1A1A1A;
+  --admin-card-bg: rgba(255, 255, 255, 0.05);
+  --admin-card-border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  /* Base theme variables */
+  --background: #ffffff;
+  --foreground: var(--color-text-dark);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-family-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: var(--color-text-light);
+  }
+}
+
+/* Global styles */
+* {
+  font-family: var(--font-family-primary);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-family-primary);
+}
+
+/* Utility classes for design system */
+.text-accent {
+  color: var(--color-primary-accent);
+}
+
+.text-accent-hover:hover {
+  color: var(--color-primary-accent-hover);
+}
+
+.bg-accent {
+  background-color: var(--color-primary-accent);
+}
+
+.bg-accent-hover:hover {
+  background-color: var(--color-primary-accent-hover);
+}
+
+.border-radius-standard {
+  border-radius: var(--border-radius-standard);
+}
+
+.landing-card {
+  background: var(--landing-card-bg);
+  border: var(--landing-card-border);
+  backdrop-filter: var(--landing-card-backdrop);
+}
+
+.admin-card {
+  background: var(--admin-card-bg);
+  border: var(--admin-card-border);
+}
