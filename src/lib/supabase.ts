@@ -12,8 +12,10 @@ export const supabase = createClient(supabaseUrl, supabaseKey)
 // Database Types - These will be generated from Supabase schema
 export type Database = {
   public: {
-    Tables: {
-      // Tables will be defined here after database setup
-    }
+    Tables: Record<string, {
+      Row: Record<string, unknown>
+      Insert: Record<string, unknown>
+      Update: Record<string, unknown>
+    }>
   }
 } 
