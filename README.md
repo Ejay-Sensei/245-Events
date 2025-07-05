@@ -30,8 +30,8 @@ The project uses a comprehensive design system with:
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd 245-events
+   git clone https://github.com/Ejay-Sensei/245-Events.git
+   cd 245-Events
    ```
 
 2. **Install dependencies**
